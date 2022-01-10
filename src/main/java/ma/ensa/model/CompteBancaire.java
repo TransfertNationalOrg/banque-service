@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @Entity
-public class Compte {
+public class CompteBancaire {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
