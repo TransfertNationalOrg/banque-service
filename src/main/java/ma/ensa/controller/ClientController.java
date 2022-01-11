@@ -1,6 +1,8 @@
 package ma.ensa.controller;
 
 import lombok.Data;
+import ma.ensa.Transfert.TransfertDTO;
+import ma.ensa.Transfert.TransfertFeign;
 import ma.ensa.converter.ClientConverter;
 import ma.ensa.dto.ClientDTO;
 import ma.ensa.service.ClientService;
@@ -11,11 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("cmi")
+@RequestMapping("clientBanque")
 @Data
 public class ClientController {
     final ClientService clientService;
     final ClientConverter clientConverter;
+    final TransfertFeign transfertFeign;
 
     @PostMapping("/")
     public ResponseEntity<?> save(@RequestBody ClientDTO clientDTO) throws Exception {
@@ -45,4 +48,11 @@ public class ClientController {
     public ResponseEntity<List<ClientDTO>> findAll() {
         return ResponseEntity.ok().body(clientConverter.convertToDTOs(clientService.findAll()));
     }
+
+    //Get all transferts by clientBanque from transfert-service
+    @GetMapping("/allTransferts/idClientBanque")
+    public List<TransfertDTO> getAllTransfertsByClientBanque(@PathVariable("idClientBanque") Long idClientBanque){
+        return transfertFeign.getTransfertsByClientBanque(idClientBanque);
+    }
+
 }

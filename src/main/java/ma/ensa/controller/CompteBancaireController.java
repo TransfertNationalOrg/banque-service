@@ -1,6 +1,8 @@
 package ma.ensa.controller;
 
 import lombok.Data;
+import ma.ensa.Transfert.TransfertDTO;
+import ma.ensa.Transfert.TransfertFeign;
 import ma.ensa.converter.CompteBancaireConverter;
 import ma.ensa.dto.CompteBancaireDTO;
 import ma.ensa.service.CompteBancaireService;
@@ -16,6 +18,7 @@ import java.util.List;
 public class CompteBancaireController {
     final CompteBancaireService compteBancaireService;
     final CompteBancaireConverter compteBancaireConverter;
+    final TransfertFeign transfertFeign;
 
     @PostMapping("/")
     public ResponseEntity<?> save(@RequestBody CompteBancaireDTO compteBancaireDTO) throws Exception {
@@ -44,5 +47,17 @@ public class CompteBancaireController {
     @GetMapping("/")
     public ResponseEntity<List<CompteBancaireDTO>> findAll() {
         return ResponseEntity.ok().body(compteBancaireConverter.convertToDTOs(compteBancaireService.findAll()));
+    }
+
+    //Get all transferts by compteBancaire from transfert-service
+    @GetMapping("/allTransferts/idCompteBancaire")
+    public List<TransfertDTO> getAllTransfertsByCompteBancaire(@PathVariable("idCompteBancaire") Long idCompteBancaire){
+        return transfertFeign.getTransfertsByCompteBancaire(idCompteBancaire);
+    }
+
+    //Get all transferts by clientBanque from transfert-service
+    @GetMapping("/allTransferts/idClientBanque")
+    public List<TransfertDTO> getAllTransfertsByClientBanque(@PathVariable("idClientBanque") Long idClientBanque){
+        return transfertFeign.getTransfertsByClientBanque(idClientBanque);
     }
 }
