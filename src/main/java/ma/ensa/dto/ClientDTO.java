@@ -7,6 +7,7 @@ import ma.ensa.model.enumer.PAYS;
 import ma.ensa.model.enumer.TITRE;
 
 import java.util.Date;
+
 @Data
 public class ClientDTO {
     protected Long id;
