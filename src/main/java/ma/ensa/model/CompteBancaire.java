@@ -10,12 +10,12 @@ import java.util.Date;
 public class CompteBancaire {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    protected Long id;
 
-    private Long RIB;
-    private double solde;
-    private Date date;
+    protected Long RIB;
+    protected double solde;
+    protected Date date;
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private Client client;
+    protected Client client;
 }
