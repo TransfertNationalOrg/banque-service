@@ -16,9 +16,9 @@ import java.util.List;
 @RequestMapping("compteBancaire")
 @Data
 public class CompteBancaireController {
-    final CompteBancaireService compteBancaireService;
-    final CompteBancaireConverter compteBancaireConverter;
-    final TransfertFeign transfertFeign;
+    private final CompteBancaireService compteBancaireService;
+    private final CompteBancaireConverter compteBancaireConverter;
+    private final TransfertFeign transfertFeign;
 
     @PostMapping("/")
     public ResponseEntity<?> save(@RequestBody CompteBancaireDTO compteBancaireDTO) throws Exception {
