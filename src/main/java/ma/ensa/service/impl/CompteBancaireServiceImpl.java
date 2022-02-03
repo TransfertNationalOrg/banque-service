@@ -1,6 +1,7 @@
 package ma.ensa.service.impl;
 
 import lombok.Data;
+import ma.ensa.dto.CompteBancaireDTO;
 import ma.ensa.exception.DuplicatedException;
 import ma.ensa.exception.NotFoundException;
 import ma.ensa.model.CompteBancaire;
@@ -44,5 +45,10 @@ public class CompteBancaireServiceImpl implements CompteBancaireService {
     @Override
     public List<CompteBancaire> findAll() {
         return compteBancaireRepository.findAll();
+    }
+
+    @Override
+    public CompteBancaireDTO findByIdClient(Long idClient) {
+        return compteBancaireRepository.findByIdclient(idClient);
     }
 }

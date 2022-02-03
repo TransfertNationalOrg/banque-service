@@ -1,6 +1,7 @@
 package ma.ensa.service;
 
 
+import ma.ensa.dto.CompteBancaireDTO;
 import ma.ensa.exception.DuplicatedException;
 import ma.ensa.exception.NotFoundException;
 import ma.ensa.model.CompteBancaire;
@@ -12,4 +13,6 @@ public interface CompteBancaireService {
     CompteBancaire update(CompteBancaire compteBancaire) throws NotFoundException;
     Long delete(Long id) throws NotFoundException;
     List<CompteBancaire> findAll();
+
+    CompteBancaireDTO findByIdClient(Long idClient);
 }

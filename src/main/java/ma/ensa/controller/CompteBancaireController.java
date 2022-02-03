@@ -60,4 +60,10 @@ public class CompteBancaireController {
     public List<TransfertDTO> getAllTransfertsByClientBanque(@PathVariable("idClientBanque") Long idClientBanque){
         return transfertFeign.getTransfertsByClientBanque(idClientBanque);
     }
+
+    //Get compte bancaire by idClient
+    @GetMapping("/client/{idClient}")
+    public CompteBancaireDTO getCompteBancaireDTOByIdClient(@PathVariable("idClient") Long idClient){
+        return compteBancaireService.findByIdClient(idClient);
+    }
 }
